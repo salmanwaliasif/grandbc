@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 568" role="img" aria-label="Grand Business Center">
+  <defs>
+    <linearGradient id="gbc-a" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#46C27B"/>
+      <stop offset=".5" stop-color="#36B06A"/>
+      <stop offset=".5" stop-color="#2A9C59"/>
+      <stop offset="1" stop-color="#23894D"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#gbc-a)" d="M225 0 450 218v295L350 408V278L225 150 100 278v130L0 513V218Z"/>
+  <path fill="url(#gbc-a)" d="M225 200l83 83v205l-83 80-83-80V283Z"/>
+</svg>

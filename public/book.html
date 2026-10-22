@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Book a Space — Grand Business Center</title>
+<meta name="description" content="Book a meeting room, coworking desk, private office or virtual office at Grand Business Center, Muscat Grand Mall.">
+<!-- @head:start -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0F3D2C">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/data.js" defer></script>
+<script src="assets/vendor/icons.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+<!-- @head:end -->
+<script src="assets/js/book.js" defer></script>
+</head>
+<body data-page="book">
+<!-- @header:start -->
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar"><div class="wrap">
+  <span class="tb-hours">Open 24/7 for members. Enquiries answered within one working day.</span>
+  <span class="tb-links"><a href="tel:+96891580111">+968 9158 0111</a><a class="tb-mail" href="mailto:info@grand-bc.com">info@grand-bc.com</a></span>
+</div></div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Grand Business Center, home">
+      <img src="assets/brand/mark.svg" alt="" width="34" height="43">
+      <span class="brand-text"><span class="brand-name">Grand Business Center</span><span class="brand-ar" lang="ar">مركز الكبير للأعمال</span></span>
+    </a>
+    <nav aria-label="Main"><ul class="nav-links">
+        <li><a href="spaces.html" data-nav="spaces">Spaces</a></li>
+        <li><a href="meeting-rooms.html" data-nav="meeting">Meeting rooms</a></li>
+        <li><a href="business-setup.html" data-nav="setup">Business setup</a></li>
+        <li><a href="pricing.html" data-nav="pricing">Pricing</a></li>
+        <li><a href="contact.html" data-nav="contact">Visit us</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <span data-account-slot></span>
+      <a class="btn btn--sm" href="book.html">Book a space</a>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="Open menu"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+<div class="drawer" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="drawer-bg"></div>
+  <div class="drawer-panel">
+    <button class="drawer-close" type="button" aria-label="Close menu"><i data-lucide="x"></i></button>
+    <a href="index.html">Home</a>
+    <a href="spaces.html">Spaces</a>
+    <a href="meeting-rooms.html">Meeting rooms</a>
+    <a href="business-setup.html">Business setup</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Visit us</a>
+    <span data-drawer-account style="display:contents"></span>
+    <a class="btn" href="book.html">Book a space</a>
+    <a class="btn btn--wa" href="#" data-wa><i data-lucide="message-circle"></i>WhatsApp us</a>
+  </div>
+</div>
+<!-- @header:end -->
+<main id="main">
+  <section class="section" style="padding-top:40px">
+    <div class="wrap">
+      <div data-flow>
+        <h1 style="font-size:clamp(1.9rem,3.6vw,2.6rem)">Book a space</h1>
+        <p class="muted" style="margin-bottom:28px">Meeting rooms and day passes are confirmed instantly. Office, desk and virtual office requests are confirmed by our team within one working day.</p>
+        <div class="wizard">
+          <div>
+            <ol class="progress" aria-label="Booking steps">
+              <li>Space</li><li>When</li><li>Extras</li><li>Your details</li><li>Review</li>
+            </ol>
+            <form novalidate data-form>
+              <!-- 1. space -->
+              <section class="step" data-step="0" aria-labelledby="s0">
+                <h2 id="s0">What would you like to book?</h2>
+                <div class="seg" role="group" aria-label="Space type" style="margin-bottom:18px;flex-wrap:wrap" data-types>
+                  <button type="button" data-type="meeting">Meeting room</button>
+                  <button type="button" data-type="desk">Coworking desk</button>
+                  <button type="button" data-type="office">Private office</button>
+                  <button type="button" data-type="virtual">Virtual office</button>
+                </div>
+                <div class="opts" data-space-opts></div>
+                <p class="err" data-err="space"></p>
+              </section>
+
+              <!-- 2. when -->
+              <section class="step" data-step="1" aria-labelledby="s1">
+                <h2 id="s1" data-when-title>When do you need it?</h2>
+                <div data-when></div>
+              </section>
+
+              <!-- 3. extras -->
+              <section class="step" data-step="2" aria-labelledby="s2">
+                <h2 id="s2">Anything else?</h2>
+                <p class="muted">Optional extras. You can change these later with our team.</p>
+                <div class="addons" data-addons></div>
+                <div class="field mt-2"><label for="notes">Notes for our team</label><textarea class="textarea" id="notes" name="notes" placeholder="e.g. guest names, room layout, dietary needs"></textarea></div>
+              </section>
+
+              <!-- 4. details -->
+              <section class="step" data-step="3" aria-labelledby="s3">
+                <h2 id="s3">Your details</h2>
+                <div data-details></div>
+              </section>
+
+              <!-- 5. review -->
+              <section class="step" data-step="4" aria-labelledby="s4">
+                <h2 id="s4">Review and confirm</h2>
+                <div data-review></div>
+                <label class="check mt-2"><input type="checkbox" name="terms" required><span>I agree to Grand Business Center's booking terms. Meeting rooms can be cancelled free of charge up to 24 hours before the start time.</span></label>
+                <p class="err" data-err="terms"></p>
+              </section>
+
+              <div class="step-nav">
+                <button type="button" class="btn btn--ghost" data-back><i data-lucide="chevron-left"></i>Back</button>
+                <button type="button" class="btn" data-next>Continue</button>
+              </div>
+            </form>
+          </div>
+
+          <aside class="card summary" aria-live="polite" data-summary></aside>
+        </div>
+      </div>
+      <div data-done hidden></div>
+    </div>
+  </section>
+</main>
+<!-- @footer:start -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><img src="assets/brand/mark.svg" alt="" width="34" height="43"><span class="brand-text"><span class="brand-name">Grand Business Center</span><span class="brand-ar" lang="ar">مركز الكبير للأعمال</span></span></a>
+        <p>Serviced offices, meeting rooms and company formation at Muscat Grand Mall — helping Oman's entrepreneurs, SMEs and investors for over 10 years.</p>
+      </div>
+      <div>
+        <h4>Workspaces</h4>
+        <ul>
+          <li><a href="spaces.html?type=office">Private offices</a></li>
+          <li><a href="meeting-rooms.html">Meeting rooms</a></li>
+          <li><a href="spaces.html?type=desk">Coworking desks</a></li>
+          <li><a href="spaces.html?type=virtual">Virtual office</a></li>
+          <li><a href="book.html?space=desk-day&amp;free=1">Free day pass</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="business-setup.html">Business setup</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Visit us</a></li>
+          <li><a href="signup.html">Become a member</a></li>
+          <li><a href="account.html">My bookings</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>Building 4, 5th Floor, Tilal Offices<br>Muscat Grand Mall, Al Khuwair<br>P.O. Box 7, PC 136, Sultanate of Oman</p>
+        <p><a href="tel:+96891580111">+968 9158 0111</a><br><a href="tel:+96894990212">+968 9499 0212</a><br><a href="mailto:info@grand-bc.com">info@grand-bc.com</a></p>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© <span data-year></span> Grand Business Center LLC, CR No. 1382948</span>
+      <span>Workplace for today; flexibility for tomorrow</span>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" href="#" data-wa aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.44-9.43a9.4 9.4 0 0 1 9.43 9.44c0 5.2-4.23 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.05.72C5.8.72.7 5.8.7 12.07c0 2 .52 3.95 1.52 5.67L.6 23.62l6.02-1.58a11.33 11.33 0 0 0 5.42 1.38h.01c6.26 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.03"/></svg></a>
+<!-- @footer:end -->
+</body>
+</html>
