@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const qopts = () => ({ spaceId: S.spaceId, hours: S.hours, guests: S.guests, days: S.days, free: S.free, term: S.term, addons: S.addons });
   function summary() {
     const s = cur(); const box = $("[data-summary]");
-    if (!s) { box.innerHTML = `<h3>Your booking</h3><p class="muted">Choose a space to see the price.</p><div class="bands bands--line"></div>`; return; }
+    if (!s) { box.innerHTML = `<h3>Your booking</h3><p class="muted">Choose a space to see the price.</p>`; return; }
     const Q = A.quote(qopts()); const instant = s.type === "meeting" || (s.type === "desk" && s.unit === "day");
     box.innerHTML = `<img class="sum-img" src="${img(s.img, 1)}" alt=""><h3>${esc(s.name)}</h3><p class="muted small">${esc(whenText())}</p>
       <ul class="sum-lines">${Q.lines.map(([a, b]) => `<li><span>${esc(a)}</span><span>${esc(b)}</span></li>`).join("")}<li><span>VAT 5%</span><span>${omr(Q.vat)}</span></li></ul>
@@ -250,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ${instant ? `<a class="btn btn--ghost" href="${ics(b, s)}" download="${b.ref}.ics"><i data-lucide="calendar-plus"></i>Add to calendar</a>` : ""}
         ${Store.current() ? `<a class="btn btn--ghost" href="account.html">View my bookings</a>` : `<a class="btn btn--ghost" href="signup.html">Create an account</a>`}
       </div>
-      <div class="bands bands--line mt-3"></div>
       <p class="small muted">Questions? Call <a href="tel:+96891580111">+968 9158 0111</a> or email <a href="mailto:${C.email}?subject=Booking%20${b.ref}">${C.email}</a>.</p>
     </div>`;
     icons(); window.scrollTo({ top: 0, behavior: "smooth" });

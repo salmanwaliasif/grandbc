@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
       $("[data-setup-sum]").innerHTML = `<h3>Your setup plan</h3>
         <ul class="sum-lines"><li><span>Activity</span><span>${esc(f.activity.value || "—")}</span></li><li><span>Ownership</span><span>${esc(f.owner.value)}</span></li>
         <li><span>Shareholders</span><span>${esc(f.shareholders.value)}</span></li><li><span>Visas</span><span>${esc(f.visas.value)}</span></li><li><span>Office</span><span>${esc(f.office.value)}</span></li><li><span>Start</span><span>${esc(f.when.value)}</span></li></ul>
-        <div class="bands bands--line"></div>
         <p class="label" style="font-weight:700;color:var(--pine);margin-top:10px">${list.length} service${list.length === 1 ? "" : "s"}</p>
         <ul class="ticks small">${list.map((n) => `<li><i data-lucide="check"></i>${esc(n)}</li>`).join("") || "<li class='muted'>Pick at least one service</li>"}</ul>
         <p class="sum-note">You'll get a fixed quote covering government fees and our service.</p>`;
