@@ -144,6 +144,7 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") { drawer?.classList.remove("open"); $$(".modal.open, .lightbox.open").forEach((m) => m.classList.remove("open")); } });
     document.addEventListener("click", (e) => { const l = e.target.closest("[data-logout]"); if (l) { e.preventDefault(); Store.logout(); location.href = "index.html"; } });
     $$("[data-wa]").forEach((a) => { a.href = waLink(a.dataset.wa || "Hello Grand Business Center, I'd like to know more about your workspaces."); a.target = "_blank"; a.rel = "noopener"; });
+    document.addEventListener("click", (e) => { const m = e.target.closest("[data-map]"); if (!m) return; const f = document.createElement("iframe"); f.title = "Map showing Muscat Grand Mall"; f.src = m.dataset.map; f.referrerPolicy = "no-referrer-when-downgrade"; m.replaceWith(f); });
     $$("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
   }
 

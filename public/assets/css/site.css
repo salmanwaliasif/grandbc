@@ -3,14 +3,14 @@
 :root {
   --pine: #0F3D2C;
   --pine-2: #15513A;
-  --leaf: #1F9A55;
+  --leaf: #15804A;
   --leaf-2: #2DB06A;
   --mint: #E7F2EB;
   --frost: #F4F7F5;
   --paper: #FFFFFF;
   --ink: #15211C;
   --ink-2: #4A5A53;
-  --ink-3: #74847C;
+  --ink-3: #5E6E66;
   --line: #D6E2DB;
   --amber: #B7791F;
   --danger: #B42318;
@@ -544,3 +544,108 @@ p { margin: 0 0 1em; }
 .mt-0 { margin-top: 0; } .mb-0 { margin-bottom: 0; } .mt-2 { margin-top: 24px; } .mt-3 { margin-top: 40px; }
 .flex { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .between { justify-content: space-between; }
+
+/* ================= Motion ================= */
+/* Section fade-ins (classes added by motion.js only when motion is allowed) */
+.motion .reveal { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--rd, 0ms), transform .8s cubic-bezier(.2,.7,.2,1) var(--rd, 0ms); }
+.motion .reveal.is-in { opacity: 1; transform: none; }
+
+/* Hero intro */
+.hero-title .ln { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+.hero-title .ln > span { display: inline-block; }
+.motion [data-hero] .hero-img { transform: scale(1.12); transition: transform 2.4s cubic-bezier(.2,.7,.2,1); }
+.motion [data-hero] .ln > span { transform: translate3d(0, 105%, 0); transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+.motion [data-hero] .ln + .ln > span { transition-delay: .09s; }
+.motion [data-hero] [data-in] { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.motion [data-hero] [data-in="1"] { transition-delay: 0s; }
+.motion [data-hero] [data-in="3"] { transition-delay: .25s; }
+.motion [data-hero] [data-in="4"] { transition-delay: .38s; }
+.motion [data-hero] [data-in="5"] { transition-delay: .55s; }
+.motion [data-hero].hero-in .hero-img { transform: scale(1.02); }
+.motion [data-hero].hero-in .ln > span, .motion [data-hero].hero-in [data-in] { transform: none; opacity: 1; }
+
+/* Card tilt highlight */
+.space, .plan, .item, .stat { transform-style: preserve-3d; }
+.tilting { transition: transform .18s ease-out !important; will-change: transform; position: relative; }
+.tilting::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,.22), transparent 45%); z-index: 2; }
+
+/* Confirmation tick pop */
+.confirm .tick { animation: pop .55s cubic-bezier(.2,1.4,.4,1) both; }
+@keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ================= 5th-floor explorer (CSS 3D) ================= */
+.floor-sec { background: linear-gradient(180deg, var(--frost) 0%, #E9F1EC 100%); overflow: hidden; }
+.floor { display: grid; grid-template-columns: 1.45fr 1fr; gap: 28px; align-items: center; }
+.floor > * { min-width: 0; }
+.floor-stage { position: relative; z-index: 1; height: 500px; display: grid; place-items: center; touch-action: pan-y; }
+.floor-scene { perspective: 1800px; perspective-origin: 50% 30%; width: 540px; height: 360px; }
+.tower { --rx: 0deg; --rz: 0deg; position: relative; width: 540px; height: 360px; transform-style: preserve-3d;
+  transform: rotateX(calc(56deg + var(--rx))) rotateZ(calc(-34deg + var(--rz))); }
+.slab { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(var(--z)); border-radius: 6px; transition: transform 1.2s cubic-bezier(.2,.8,.2,1), opacity 1s ease; }
+.slab--ghost { background: rgba(15,61,44,.06); border: 1px solid rgba(15,61,44,.18); }
+.slab--ghost.slab--up { background: rgba(255,255,255,.35); border-color: rgba(15,61,44,.2); }
+.slab--five { background: #DDE8E1; border: 1px solid #B7CDBF; box-shadow: 0 0 0 6px rgba(31,154,85,.12); }
+.slab-n { position: absolute; left: -46px; top: 50%; font: 700 1.4rem var(--font-display); color: rgba(15,61,44,.35); }
+.slab--five .slab-n { color: var(--leaf); }
+/* reveal: upper floors lift away, lower floors sink, 5th floor rises into place */
+.floor:not(.in) .slab--up { transform: translateZ(calc(var(--z) * .3)); }
+.floor:not(.in) .slab--ghost:not(.slab--up) { transform: translateZ(calc(var(--z) * .3)); }
+.floor.in .slab--up { transform: translateZ(calc(var(--z) + 110px)); opacity: .35; }
+.floor-sec .section-head, .floor-panel, .floor-legend { position: relative; z-index: 2; }
+.motion .floor:not(.in) .tile { transform: translateZ(0); opacity: 0; }
+
+.fplan { position: absolute; inset: 14px; transform-style: preserve-3d; }
+.tile { --t: 14px; position: absolute; padding: 0; border: 0; background: none; cursor: pointer;
+  left: calc(var(--x) / 12 * 100% + 3px); top: calc(var(--y) / 8 * 100% + 3px);
+  width: calc(var(--w) / 12 * 100% - 6px); height: calc(var(--h) / 8 * 100% - 6px);
+  transform-style: preserve-3d; transform: translateZ(var(--t)); opacity: 1;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1) var(--d, 0ms), opacity .5s ease var(--d, 0ms); }
+.tile-top { position: absolute; inset: 0; display: grid; place-items: center; background: var(--top); border-radius: 3px; border: 1px solid rgba(15,61,44,.14); }
+.tile-top b { font: 700 .82rem var(--font-display); color: var(--lbl); transform: rotateZ(34deg); white-space: nowrap; }
+.tile::before, .tile::after { content: ""; position: absolute; pointer-events: none; }
+.tile::before { left: 0; top: 100%; width: 100%; height: var(--t); background: var(--side1); transform-origin: top; transform: rotateX(-90deg); }
+.tile::after { left: 100%; top: 0; width: var(--t); height: 100%; background: var(--side2); transform-origin: left; transform: rotateY(90deg); }
+.t-free { --top: #fff; --side1: #2DB06A; --side2: #1F9A55; --lbl: var(--pine); }
+.t-free .tile-top { box-shadow: inset 0 0 0 2px var(--leaf); }
+.t-taken { --top: #C9D6CE; --side1: #A9BAB0; --side2: #94A79C; --lbl: #5F7268; --t: 10px; }
+.t-room { --top: #E7F2EB; --side1: #7CC79C; --side2: #5DB483; --lbl: var(--pine); }
+.t-shared { --top: #0F3D2C; --side1: #0A2A1E; --side2: #071F16; --lbl: #CFE3D7; --t: 6px; }
+.tile:hover, .tile:focus-visible { --t: 30px; transition-delay: 0ms; }
+.t-taken:hover, .t-taken:focus-visible { --t: 18px; }
+.tile.on { --t: 38px; transition-delay: 0ms; }
+.tile.on .tile-top { box-shadow: inset 0 0 0 3px var(--leaf), 0 0 0 3px rgba(31,154,85,.35); }
+.tile:focus-visible { outline: none; }
+.tile:focus-visible .tile-top { outline: 3px solid var(--amber); }
+
+.floor-panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-l); overflow: hidden; box-shadow: var(--shadow); }
+.floor-panel.swap { animation: fpIn .35s ease; }
+@keyframes fpIn { from { opacity: .3; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: none; } }
+.fp-img { aspect-ratio: 16/9; background: var(--mint); }
+.fp-img img { width: 100%; height: 100%; object-fit: cover; }
+.fp-body { padding: 20px 22px 22px; }
+.fp-body h3 { font-size: 1.4rem; margin-bottom: 6px; }
+.fp-body p { color: var(--ink-2); font-size: .97rem; }
+.floor-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .88rem; color: var(--ink-2); margin-top: 6px; align-items: center; }
+.lg { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 7px; vertical-align: -2px; }
+.lg-free { background: #fff; box-shadow: inset 0 0 0 2px var(--leaf); } .lg-taken { background: #C9D6CE; } .lg-room { background: #7CC79C; } .lg-shared { background: var(--pine); }
+@media (max-width: 1100px) { .floor-scene, .tower { width: 480px; height: 320px; } .floor-stage { height: 440px; } }
+@media (max-width: 900px) { .floor { grid-template-columns: 1fr; } .floor-stage { height: 400px; } }
+@media (max-width: 600px) {
+  .floor-stage { height: 290px; margin: 0 -16px; }
+  .floor-scene { transform: scale(.6); }
+  .tile-top b { font-size: 1rem; }
+}
+@media (max-width: 380px) { .floor-scene { transform: scale(.52); } .floor-stage { height: 260px; } }
+@media (prefers-reduced-motion: reduce) { .slab, .tile { transition: none; } }
+
+/* Map loads only when asked: keeps Google Maps' heavy scripts off the initial page */
+.map-facade { width: 100%; height: 100%; border: 0; padding: 0; cursor: pointer; position: relative; display: grid; place-items: center; color: var(--pine);
+  background: radial-gradient(circle at 50% 46%, rgba(31,154,85,.18) 0 60px, transparent 61px), repeating-linear-gradient(0deg, transparent 0 38px, rgba(15,61,44,.07) 38px 40px), repeating-linear-gradient(90deg, transparent 0 38px, rgba(15,61,44,.07) 38px 40px), var(--mint); }
+.map-facade span { display: grid; justify-items: center; gap: 10px; font-weight: 700; }
+.map-facade svg { width: 40px; height: 40px; color: var(--leaf); }
+.map-facade em { font-style: normal; font-weight: 500; font-size: .9rem; color: var(--ink-2); }
+.map-facade:hover span { transform: translateY(-2px); }
+/* reserve space for script-rendered booking UI to avoid layout shift */
+[data-form] { min-height: 560px; }
+.summary { min-height: 420px; }
+@media (max-width: 980px) { .summary { min-height: 0; } }

@@ -20,6 +20,11 @@ Static site — no framework, no build step needed to deploy.
 | `contact.html` | Tour booking, map, directions |
 | `signup.html` / `login.html` / `account.html` | Member accounts: upcoming bookings, cancel, rebook, pro-forma invoices, requests, profile |
 
+## Motion & 3D
+- `assets/js/floor.js` — interactive 3D model of the 5th floor (pure CSS 3D, no WebGL library). Room layout is illustrative; edit the `R` array to match the real floor plan and which offices are free.
+- `assets/js/motion.js` — section fade-ins, hero intro, count-up numbers, card tilt.
+- Performance: only `transform`/`opacity` are animated, observers stop after firing, tilt runs only on mouse devices, and all motion turns off for visitors with "reduce motion" set. Google Maps only loads when the visitor taps "Show map". Lighthouse (mobile, throttled): home 94, booking 97.
+
 ## Editing content & prices
 Everything lives in **`public/assets/js/data.js`** — spaces, prices, add-ons, amenities, phone numbers and the WhatsApp number.
 

@@ -12,10 +12,13 @@
 <link rel="preload" href="assets/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver"in window){document.documentElement.classList.add("motion");setTimeout(function(){var h=document.querySelector("[data-hero]");h&&h.classList.add("hero-in")},2500)}</script>
 <script src="assets/js/data.js" defer></script>
 <script src="assets/vendor/icons.js" defer></script>
 <script src="assets/js/app.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 <!-- @head:end -->
+<script src="assets/js/floor.js" defer></script>
 </head>
 <body data-page="home">
 <!-- @header:start -->
@@ -62,14 +65,14 @@
 <!-- @header:end -->
 
 <main id="main">
-  <section class="hero">
-    <img class="hero-img" src="assets/img/boardroom-led.webp" alt="The Grand Business Center boardroom with a long white table and black chairs" fetchpriority="high">
+  <section class="hero" data-hero>
+    <img class="hero-img" src="assets/img/boardroom-led.webp" srcset="assets/img/boardroom-led-sm.webp 720w, assets/img/boardroom-led.webp 1600w" sizes="100vw" alt="The Grand Business Center boardroom with a long white table and black chairs" fetchpriority="high">
     <div class="wrap">
-      <span class="hero-where"><i data-lucide="map-pin"></i>Tilal Offices, 5th floor — Muscat Grand Mall</span>
-      <h1>Your office in Muscat, ready this week.</h1>
-      <p class="lede">Furnished private offices, meeting rooms, desks and virtual offices — plus company formation for founders and investors setting up in Oman. Book online, move in fast.</p>
+      <span class="hero-where" data-in="1"><i data-lucide="map-pin"></i>Tilal Offices, 5th floor — Muscat Grand Mall</span>
+      <h1 class="hero-title"><span class="ln"><span>Your office in Muscat,</span></span> <span class="ln"><span>ready this week.</span></span></h1>
+      <p class="lede" data-in="3">Furnished private offices, meeting rooms, desks and virtual offices — plus company formation for founders and investors setting up in Oman. Book online, move in fast.</p>
 
-      <div class="bookbar" data-bookbar>
+      <div class="bookbar" data-bookbar data-in="4">
         <div class="bb-tabs" role="tablist" aria-label="What would you like to book?">
           <button class="bb-tab" role="tab" type="button" data-type="meeting"><i data-lucide="presentation"></i>Meeting room</button>
           <button class="bb-tab" role="tab" type="button" data-type="office"><i data-lucide="door-closed"></i>Private office</button>
@@ -84,10 +87,10 @@
         </form>
       </div>
 
-      <div class="hero-proof">
-        <div><strong>10+ years</strong>serving Oman's businesses</div>
+      <div class="hero-proof" data-in="5">
+        <div><strong><span data-count="10">10</span>+ years</strong>serving Oman's businesses</div>
         <div><strong>24/7</strong>biometric access</div>
-        <div><strong>From OMR 300</strong>a month, all-inclusive</div>
+        <div><strong>From OMR <span data-count="300">300</span></strong>a month, all-inclusive</div>
         <div><strong>Zero brokerage</strong>move in without agents</div>
       </div>
     </div>
@@ -153,6 +156,25 @@
     </div>
   </section>
 
+  <section class="section floor-sec" id="floor">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Walk the 5th floor before you visit</h2>
+        <p>Tap any room to see what it is, whether it's free and what it costs. Green offices are available to move into now.</p>
+      </div>
+      <div class="floor" data-floor>
+        <div class="floor-stage">
+          <div class="floor-scene"><div class="tower" data-tower></div></div>
+        </div>
+        <div class="floor-panel" data-floor-panel aria-live="polite"></div>
+      </div>
+      <div class="floor-legend">
+        <span><i class="lg lg-free"></i>Available office</span><span><i class="lg lg-taken"></i>Occupied</span><span><i class="lg lg-room"></i>Meeting space</span><span><i class="lg lg-shared"></i>Shared area</span>
+        <span class="muted">Illustrative layout</span>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--white" id="rooms">
     <div class="wrap">
       <div class="section-head">
@@ -214,7 +236,7 @@
           <li><img src="assets/img/floor-sign-sm.webp" alt="5th floor sign pointing to Grand Business Center" loading="lazy"><div><h4>Turn left on the 5th floor</h4><p>Follow the Grand Business Center sign to reception.</p></div></li>
         </ol>
         <div>
-          <div class="map"><iframe title="Map showing Muscat Grand Mall" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Muscat%20Grand%20Mall%2C%20Al%20Khuwair%2C%20Muscat&amp;output=embed"></iframe></div>
+          <div class="map"><button type="button" class="map-facade" data-map="https://www.google.com/maps?q=Muscat%20Grand%20Mall%2C%20Al%20Khuwair%2C%20Muscat&amp;output=embed"><span><i data-lucide="map-pin"></i>Show map<em>Muscat Grand Mall, Al Khuwair</em></span></button></div>
           <div class="addr">
             <div><i data-lucide="building-2"></i><span>Building 4, 5th Floor, Tilal Offices, Muscat Grand Mall, Al Khuwair, Muscat</span></div>
             <div><i data-lucide="phone"></i><span><a href="tel:+96891580111">+968 9158 0111</a> or <a href="tel:+96894990212">+968 9499 0212</a></span></div>
